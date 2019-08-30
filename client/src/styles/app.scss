@@ -1,0 +1,30 @@
+html,body{
+  height: 100%;
+  width: 100%;
+  background: #536976;  
+  background: -webkit-linear-gradient(to left, #292E49, #536976);  
+  background: linear-gradient(to left, #292E49, #536976); 
+}
+
+@import "error_page";
+
+.full-height{
+  height: 100vh !important;
+}
+.right-part{
+  height: 120vh;
+  background-color: #fff;
+}
+.image-thumb{
+  padding:5%;
+  color:#fff;
+  margin-top:35vh;  
+}
+.image-thumb h6{
+  margin-top:5%;
+  color:#fff;
+}
+.card-booking{
+  margin-top:20vh;
+  padding:30px;
+}
