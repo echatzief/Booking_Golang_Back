@@ -31,7 +31,8 @@ class BookingForm extends Component{
             Authorization: `Basic ${Auth.getToken()}`
           },
           data: {
-            ...values
+            ...values,
+            cAt: new Date()
           },
           contentType: 'json',
           responseType: 'json',
@@ -57,7 +58,7 @@ class BookingForm extends Component{
                   message: 'Please check your name.',
                 },
               ],
-            })(<Input placeholder="Your name ..." onChange={this.onChangeName}/>)}
+            })(<Input placeholder="Your name ..." />)}
             </FormItem>
             <FormItem label="E-mail: ">
               {getFieldDecorator('email', {
@@ -71,7 +72,7 @@ class BookingForm extends Component{
                     message: 'Please input your E-mail!',
                   },
                 ],
-              })(<Input placeholder="Your E-mail ..." onChange={this.onChangeEmail} />)}
+              })(<Input placeholder="Your E-mail ..." />)}
             </FormItem>
             <FormItem label="Comments: ">
               {getFieldDecorator('comments', {
@@ -80,7 +81,6 @@ class BookingForm extends Component{
                     rows={3} 
                     placeholder="Comments...." 
                     autosize={{ minRows: 2,maxRows: 4 }}
-                    onChange={this.onChangeComments}
                   />
               )}
             </FormItem>
@@ -96,7 +96,6 @@ class BookingForm extends Component{
                 <DatePicker 
                   showTime 
                   placeholder="Select Time ..." 
-                  onChange={this.onChangeDate}
                 />
               )}
             </FormItem>
