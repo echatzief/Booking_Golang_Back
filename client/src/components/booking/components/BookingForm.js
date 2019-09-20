@@ -1,5 +1,5 @@
 import React,{ Component } from 'react'
-import { Card,Form,Input,DatePicker, Button ,message } from 'antd'
+import { Card,Form,Input,DatePicker, Button,Modal,Icon } from 'antd'
 import axios from 'axios'
 import { BASEURL } from '../../../config/config'
 import Auth from '../../../auth/auth'
@@ -7,7 +7,13 @@ const FormItem = Form.Item
 const { TextArea } = Input;
 
 class BookingForm extends Component{
-
+  constructor(props){
+    super(props)
+    this.state={
+      modalVisibility: false,
+      bookingHash: null,
+    }
+  }
   componentDidMount(){
     //Setup the authentication first
     if (!Auth.isAuthenticated()){
@@ -22,6 +28,9 @@ class BookingForm extends Component{
     this.props.form.setFieldsValue({ name: '' ,email: '', comments: '',date: null });
   }
 
+  hideModal = () => {
+    this.setState({ modalVisibility: false , bookingHash: null })
+  }
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
@@ -37,9 +46,9 @@ class BookingForm extends Component{
           contentType: 'json',
           responseType: 'json',
           type: 'application/json'
-        }).then(()=>{
+        }).then((res)=>{
           this.clearFields()
-          message.success('Booking has been arranged.')
+          this.setState({ modalVisibility: true , bookingHash: res.data.InsertedID }) 
         })
       }
     });
@@ -102,6 +111,19 @@ class BookingForm extends Component{
             <Button onClick={this.handleSubmit} type="primary">Book Now</Button>
           </Form>
         </Card>
+        <Modal
+          title={<div><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> <span>Booking Completed</span></div>}
+          visible={this.state.modalVisibility}
+          centered
+          footer={[
+            <Button key="back" onClick={this.hideModal}>
+              Close
+            </Button>
+          ]}
+        >
+          <p>You have successfully createad a booking.In order to edit this booking just keep the following hash:</p>
+          <p><strong>{this.state.bookingHash}</strong></p>
+        </Modal>
       </div>
     )
   }

@@ -8,7 +8,7 @@ class BookingIndex extends Component{
     return (
       <Row type="flex" justify="center">
         <Col span={7}>
-          <InfoCard/>
+          <InfoCard history={this.props.history}/>
         </Col>
         <Col span={17} className="right-part">
           <BookingForm/>

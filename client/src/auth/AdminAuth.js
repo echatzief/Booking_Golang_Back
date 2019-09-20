@@ -1,11 +1,11 @@
 function setToken(token){
-  localStorage.setItem('requestToken',token)
+  localStorage.setItem('adminToken',token)
 }
 function getToken(){
-  return localStorage.getItem('requestToken')
+  return localStorage.getItem('adminToken')
 }
 function isAuthenticated(){
-  if (localStorage.getItem('requestToken')){
+  if (localStorage.getItem('adminToken')){
     return true
   }
   return false

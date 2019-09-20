@@ -2,6 +2,7 @@ import React,{ Component } from 'react'
 import { Form,Input,Button, Col,Row,message } from 'antd'
 import axios from 'axios'
 import { BASEURL } from '../../../config/config'
+import AdminAuth from '../../../auth/AdminAuth'
 const FormItem = Form.Item
 class LoginForm extends Component{
 
@@ -17,7 +18,10 @@ class LoginForm extends Component{
           responseType: 'json',
           type: 'application/json'
         }).then((res)=>{
-          if (res.data.Success === "true"){
+          if (res.data.Success){
+            if (!AdminAuth.isAuthenticated()){
+              AdminAuth.setToken(res.data.Credential)
+            }
             this.props.history.push('/a')
           } else {
             message.error("Wrong credentials.Try again.")
