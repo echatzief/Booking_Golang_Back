@@ -35,3 +35,11 @@ func ConnectToDatabase() *mongo.Client {
 	fmt.Println("Database connected")
 	return client
 }
+func Disconnect(client *mongo.Client) {
+	err := client.Disconnect(context.TODO())
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("Connection to MongoDB closed.")
+}

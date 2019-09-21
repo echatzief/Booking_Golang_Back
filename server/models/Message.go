@@ -1,5 +1,6 @@
 package models
 
 type Message struct {
-	Success bool
+	Success    bool
+	Credential string
 }
