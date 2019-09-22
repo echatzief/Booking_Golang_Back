@@ -8,7 +8,7 @@ import NotFound from './components/notFound/index'
 import './styles/app.scss'
 import 'antd/dist/antd.css'
 import AdminPanel from './components/adminPanel';
-import EditBookingForm from './components/booking/components/EditBookingForm'
+import EditBooking from './components/booking/components/EditBooking'
 
 
 
@@ -20,7 +20,7 @@ const renderApp = (
       <Route exact path="/" component={Booking}/>
       <Route exact path="/login" component={Login}/>
       <Route exact path="/a" component={AdminPanel}/>
-      <Route exact path="/booking/edit" component={EditBookingForm}/>
+      <Route exact path="/booking/edit" component={EditBooking}/>
       <Route component={NotFound}/>
     </Switch>
   </Router>
