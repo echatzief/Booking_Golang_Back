@@ -18,7 +18,7 @@ func ConnectToDatabase() *mongo.Client {
 	defer cancel()
 	//We need to set up a client first
 	//It takes the URI of your database
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://echatzief:fsfbeu1997@ds235181.mlab.com:35181/booking_hair?retryWrites=false"))
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://<username>:<password>@ds235181.mlab.com:35181/booking_hair?retryWrites=false"))
 	if err != nil {
 		log.Fatal(err)
 	}
